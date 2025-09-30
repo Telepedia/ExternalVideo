@@ -1,0 +1,40 @@
+{
+  "name": "ExternalVideo",
+  "version": "0.0.0-alpha",
+  "author": [
+    "Telepedia Ltd."
+  ],
+  "url": "https://github.com/telepedia/externalvideo",
+  "descriptionmsg": "externalvideo-desc",
+  "license-name": "Apache-2.0",
+  "type": "other",
+  "requires": {
+    "MediaWiki": ">= 1.43.0",
+    "platform": {
+      "php": ">= 8.0"
+    }
+  },
+  "AutoloadNamespaces": {
+    "Telepedia\\Extensions\\ExternalVideo\\": "includes"
+  },
+  "MessagesDirs": {
+    "ExternalVideo": [
+      "i18n"
+    ]
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "resources",
+    "remoteExtPath": ""
+  },
+  "ResourceModules": {},
+  "HookHandlers": {
+    "special": {
+      "class": "Telepedia\\Extensions\\ExternalVideo\\Hooks\\SpecialHandler"
+    }
+  },
+  "Hooks": {
+    "SkinTemplateNavigation::Universal": "special"
+  },
+  "MediaHandlers": {},
+  "manifest_version": 2
+}
