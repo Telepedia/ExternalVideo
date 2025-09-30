@@ -1,0 +1,56 @@
+<?php
+
+use Psr\Log\LoggerInterface;
+use Telepedia\Extensions\ExternalVideo\Providers\ExternalVideoProvider;
+use Telepedia\Extensions\ExternalVideo\Providers\YouTubeProvider;
+
+class ExternalVideoFactory {
+
+	public function __construct(
+		private readonly LoggerInterface $logger,
+	) {
+	}
+
+	/**
+	 * Construct the relevant object for this video
+	 * @param string $url
+	 *
+	 * @return ExternalVideoProvider
+	 * @throws InvalidArgumentException
+	 */
+	public function newFromUrl( string $url ): ExternalVideoProvider {
+		$provider = $this->determineProvider( $url );
+
+		if ( !$provider ) {
+			$this->logger->warning( "Unable to determine provider for External Video upload.",
+			[
+				'url' => $url,
+			] );
+			// not sure if we throw here, or if we just return a StausValue or null and let the caller
+			// handle the instance where we couldn't proceed
+			throw new InvalidArgumentException( "Unsupported video provider for URL: $url" );
+		}
+		
+		return $provider;
+	}
+
+	/**
+	 * Take an incoming URL and return the appropriate handler for this provider so that we can
+	 * upload the image from it
+	 * At the moment it only handles YouTube.
+	 * @TODO: support other providers? Twitch et al?
+	 * @param string $url
+	 *
+	 * @return ExternalVideoProvider|null
+	 */
+	private function determineProvider( string $url ): ?ExternalVideoProvider {
+		// does this match a YouTube URL?
+		if ( preg_match( '#(?:youtube\.com/watch\?v=|youtu\.be/)([A-Za-z0-9_\-]+)#', $url, $m ) ) {
+			return new YouTubeProvider( $m[1] );
+		}
+
+		// @TODO: try and think of what else we can support; atp I think Twitch
+
+		return null;
+	}
+}
