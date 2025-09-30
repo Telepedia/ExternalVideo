@@ -2,7 +2,8 @@
 
 Namely, we wanted a way to natively embed these videos in MediaWiki galleries. Extension:Video does this by adding its own `<videogallery>` tag, but this does not allow mixing with regular images, and that extension is not stable.
 
-ExternalVideo is also planned to display the videos on their respective file pages, rather than creating a new special page.
+ExternalVideo is also planned to display the videos on their respective file pages, rather than creating a new special page. This avoids all of the extra processing and mess that Extension:Video does, and allows us
+to rely on MediaWiki for stuff like purging, transcluding, et al.
 
 > Note: This extension is currently under development and is not suitable for production use.
 
