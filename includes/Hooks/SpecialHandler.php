@@ -2,9 +2,12 @@
 
 namespace Telepedia\Extensions\ExternalVideo\Hooks;
 
+use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 
-class SpecialHandler implements SkinTemplateNavigation__UniversalHook {
+class SpecialHandler implements
+	SkinTemplateNavigation__UniversalHook,
+	BeforePageDisplayHook {
 
 	/**
 	 * @inheritDoc
@@ -13,10 +16,19 @@ class SpecialHandler implements SkinTemplateNavigation__UniversalHook {
 		// MediaWiki is dumb and "NewFiles" is actually "Newimages"
 		if ( $sktemplate->getTitle()->isSpecial( 'Newimages' ) ) {
 			$links['views']['externalvideo-add'] = [
-				'text' => $sktemplate->getContext()->msg( 'external-video-add' )->text(),
+				'text' => $sktemplate->getContext()->msg( 'externalvideo-add' )->text(),
 				'href' => '#',
 				'id' => 'ca-add-video'
 			];
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onBeforePageDisplay( $out, $skin ): void {
+		if ( $out->getTitle()->isSpecial( 'Newimages' ) ) {
+			$out->addModules( 'ext.externalvideo.scripts' );
 		}
 	}
 }

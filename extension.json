@@ -26,15 +26,48 @@
     "localBasePath": "resources",
     "remoteExtPath": ""
   },
-  "ResourceModules": {},
+  "ResourceModules": {
+    "ext.externalvideo.scripts": {
+      "class": "MediaWiki\\ResourceLoader\\CodexModule",
+      "dependencies": [
+        "vue",
+        "mediawiki.user"
+      ],
+      "packageFiles": [
+        "ext.externalvideo.scripts/init.js",
+        "ext.externalvideo.scripts/App.vue"
+      ],
+      "codexComponents": [
+        "CdxDialog",
+        "CdxField",
+        "CdxTextInput"
+      ]
+    }
+  },
   "HookHandlers": {
     "special": {
       "class": "Telepedia\\Extensions\\ExternalVideo\\Hooks\\SpecialHandler"
     }
   },
   "Hooks": {
-    "SkinTemplateNavigation::Universal": "special"
+    "SkinTemplateNavigation::Universal": "special",
+    "BeforePageDisplay": "special"
   },
-  "MediaHandlers": {},
+  "MediaHandlers": {
+    "video/youtube": "Telepedia\\Extensions\\ExternalVideo\\Handlers\\YouTubeHandler"
+  },
+  "RestRoutes": [
+    {
+      "path": "/externalvideo/v0/video",
+      "method": [
+        "POST"
+      ],
+      "class": "Telepedia\\Extensions\\ExternalVideo\\Rest\\AddVideoHandler",
+      "services": [
+        "ExternalVideo.ExternalVideoFactory"
+      ]
+    }
+  ],
+  "ServiceWiring": "includes/ServiceWiring.php",
   "manifest_version": 2
 }

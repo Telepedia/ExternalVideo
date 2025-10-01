@@ -1,3 +1,4 @@
 {
-  "external-video-add": "Add Video"
+  "externalvideo-add": "Add Video",
+  "externalvideo-upload-permissions":"You do not have the necessary permissions to add videos."
 }
