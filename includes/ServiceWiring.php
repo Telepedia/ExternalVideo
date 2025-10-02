@@ -2,6 +2,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Telepedia\Extensions\ExternalVideo\ExternalVideoFactory;
+use Telepedia\Extensions\ExternalVideo\ExternalVideoStore;
 
 return [
 
@@ -10,6 +12,14 @@ return [
 	): ExternalVideoFactory {
 		return new ExternalVideoFactory(
 			LoggerFactory::getInstance( 'ExternalVideo' ),
+		);
+	},
+
+	'ExternalVideo.ExternalVideoStore' => static function (
+		MediaWikiServices $services
+	): ExternalVideoStore {
+		return new ExternalVideoStore(
+			$services->getRepoGroup()
 		);
 	},
 ];

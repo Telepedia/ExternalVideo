@@ -49,4 +49,12 @@ abstract class ExternalVideoProvider {
 	 * @return string
 	 */
 	abstract function getDescription(): string;
+
+	/**
+	 * Return the provider type (mime_minor) for this provider for the database. This determines
+	 * which handler is responsible for the display
+	 * @return string
+	 */
+	abstract function getMimeMinor(): string;
+
 }
