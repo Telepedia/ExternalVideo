@@ -37,31 +37,11 @@ abstract class ExternalVideoProvider {
 	abstract function getEmbed(): string;
 
 	/**
-	 * Get the title for this video. The caller MUST pass their title to this function
-	 * parent::getTitle( $title ) which will deal with normalising the title to MediaWiki compat
-	 * The caller should use the result for the upload
-	 * @param string $title the title
+	 * Get the title for this video. The subclass is responsible for normalising the title to be
+	 * MediaWiki compat
 	 * @return string
 	 */
-	protected function getTitle( string $title ): string {
-		return str_replace(
-			[
-				'|',
-				"[",
-				"]",
-				"<",
-				">"
-			],
-			[
-				"-",
-				" ",
-				" ",
-				" ",
-				" "
-			],
-			$title
-		);
-	}
+	abstract function getTitle(): string;
 
 	/**
 	 * Get the description for the file page of this video. Caller is responsible for making it
