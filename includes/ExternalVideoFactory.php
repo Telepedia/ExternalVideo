@@ -1,5 +1,8 @@
 <?php
 
+namespace Telepedia\Extensions\ExternalVideo;
+
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Telepedia\Extensions\ExternalVideo\Providers\ExternalVideoProvider;
 use Telepedia\Extensions\ExternalVideo\Providers\YouTubeProvider;
@@ -18,7 +21,7 @@ class ExternalVideoFactory {
 	 * @return ExternalVideoProvider
 	 * @throws InvalidArgumentException
 	 */
-	public function newFromUrl( string $url ): ExternalVideoProvider {
+	public function newFromUrl( string $url ): ?ExternalVideoProvider {
 		$provider = $this->determineProvider( $url );
 
 		if ( !$provider ) {
@@ -28,9 +31,9 @@ class ExternalVideoFactory {
 			] );
 			// not sure if we throw here, or if we just return a StausValue or null and let the caller
 			// handle the instance where we couldn't proceed
-			throw new InvalidArgumentException( "Unsupported video provider for URL: $url" );
+			return null;
 		}
-		
+
 		return $provider;
 	}
 
