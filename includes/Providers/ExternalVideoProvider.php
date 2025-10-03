@@ -32,9 +32,11 @@ abstract class ExternalVideoProvider {
 
 	/**
 	 * Get the embed snipped (probably an iframe) for this provider
+	 * @param int $width
+	 * @param int $height
 	 * @return string
 	 */
-	abstract function getEmbed(): string;
+	abstract function getEmbed( int $width, int $height ): string;
 
 	/**
 	 * Get the title for this video. The subclass is responsible for normalising the title to be
@@ -56,5 +58,17 @@ abstract class ExternalVideoProvider {
 	 * @return string
 	 */
 	abstract function getMimeMinor(): string;
+
+	/**
+	 * The minimum width for the embed; below this point, return a thumbnail
+	 * @return int
+	 */
+	abstract function getMinimumWidthForEmbed(): int;
+
+	/**
+	 * The minimum height for an embed - below this, return a thumbnail
+	 * @return int
+	 */
+	abstract function getMinimumHeightForEmbed(): int;
 
 }
