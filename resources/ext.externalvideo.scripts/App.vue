@@ -53,6 +53,12 @@ module.exports = defineComponent( {
 
     function onPrimaryAction() {
       open.value = false;
+      const res = rest.post(`/externalvideo/v0/video`, {
+        url: inputValue.value,
+        token: mw.user.tokens.get( 'csrfToken' )
+      });
+
+      console.log(res);
     }
 
     return {
