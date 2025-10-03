@@ -54,7 +54,7 @@
     "BeforePageDisplay": "special"
   },
   "MediaHandlers": {
-    "video/youtube": "Telepedia\\Extensions\\ExternalVideo\\Handlers\\YouTubeHandler"
+    "video/youtube": "Telepedia\\Extensions\\ExternalVideo\\Handlers\\ExternalVideoHandler"
   },
   "RestRoutes": [
     {
@@ -64,10 +64,13 @@
       ],
       "class": "Telepedia\\Extensions\\ExternalVideo\\Rest\\AddVideoHandler",
       "services": [
-        "ExternalVideo.ExternalVideoFactory"
+        "ExternalVideo.ExternalVideoFactory",
+        "ExternalVideo.ExternalVideoStore"
       ]
     }
   ],
-  "ServiceWiring": "includes/ServiceWiring.php",
+  "ServiceWiringFiles": [
+    "includes/ServiceWiring.php"
+  ],
   "manifest_version": 2
 }
