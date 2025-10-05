@@ -1,4 +1,6 @@
 {
   "externalvideo-add": "Add Video",
-  "externalvideo-upload-permissions":"You do not have the necessary permissions to add videos."
+  "externalvideo-upload-permissions":"You do not have the necessary permissions to add videos.",
+  "externalvideo-added": "Successfully added video",
+  "externalvideo-error": "An error occurred when trying to add the video"
 }

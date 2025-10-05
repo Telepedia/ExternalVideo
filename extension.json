@@ -41,6 +41,10 @@
         "CdxDialog",
         "CdxField",
         "CdxTextInput"
+      ],
+      "messages": [
+        "externalvideo-added",
+        "externalvideo-error"
       ]
     },
     "ext.externalvideo.styles": {

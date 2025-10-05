@@ -54,7 +54,7 @@ class AddVideoHandler extends SimpleHandler {
 
 		$res = $this->externalVideoStore->createFileFromProvider( $provider, $user );
 
-		if ( !$res ) {
+		if ( !$res->isOK() ) {
 			return $this->getResponseFactory()->createHttpError(
 				500,
 				['error' => wfMessage( 'externalvideo-error' )->text() ]
