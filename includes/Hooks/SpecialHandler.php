@@ -30,5 +30,7 @@ class SpecialHandler implements
 		if ( $out->getTitle()->isSpecial( 'Newimages' ) ) {
 			$out->addModules( 'ext.externalvideo.scripts' );
 		}
+
+		$out->addModuleStyles( 'ext.externalvideo.styles' );
 	}
 }

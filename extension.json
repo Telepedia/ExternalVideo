@@ -42,6 +42,11 @@
         "CdxField",
         "CdxTextInput"
       ]
+    },
+    "ext.externalvideo.styles": {
+      "styles": [
+        "ext.externalvideo.styles/index.less"
+      ]
     }
   },
   "HookHandlers": {
