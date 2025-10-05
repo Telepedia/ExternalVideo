@@ -15,10 +15,12 @@ class ExternalVideoThumbnail extends ThumbnailImage {
 	public function toHtml( $options = [] ): string {
 		$options['file-link'] = false;
 		$options['desc-link'] = false;
+		$link = $this->file->getTitle()->getFullURL();
 		return Html::rawElement(
-			'span',
+			'a',
 			[
 				'class' => 'mw-external-video-thumbnail',
+				'href' => $link
 			],
 			parent::toHtml( $options ) . $this->getPlay()
 		);
