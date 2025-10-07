@@ -10,6 +10,7 @@ use Telepedia\Extensions\ExternalVideo\ExternalVideoThumbnail;
 use Telepedia\Extensions\ExternalVideo\Providers\ExternalVideoProvider;
 use Telepedia\Extensions\ExternalVideo\Providers\YouTubeProvider;
 use TransformParameterError;
+use Wikimedia\FileBackend\FSFile\FSFile;
 
 class ExternalVideoHandler extends MediaHandler {
 
@@ -28,7 +29,7 @@ class ExternalVideoHandler extends MediaHandler {
 	 * @inheritDoc
 	 */
 	public function validateParam( $name, $value ): ?int {
-		if ( in_array( $name, ['width','height'] ) ) {
+		if ( in_array( $name, [ 'width', 'height' ] ) ) {
 			return $value > 0;
 		}
 		return true;
@@ -101,7 +102,7 @@ class ExternalVideoHandler extends MediaHandler {
 			);
 		}
 
-		$videoId = $image->getMetadataItem('videoId');
+		$videoId = $image->getMetadataItem( 'videoId' );
 
 		if ( !$videoId ) {
 			return new MediaTransformError( 'externalvideo-noid', 0, 0 );
@@ -176,7 +177,7 @@ class ExternalVideoHandler extends MediaHandler {
 	 * MediaWiki will recheck its mime and will change it to jpeg since the thumbnail
 	 * linked with this revision in the database is a JPEG. This will in turn cause it to
 	 * be handled by the JPEG handler which is not what we want
-	 * @param $image
+	 * @param FSFile $image
 	 * @return bool|int
 	 */
 	public function isFileMetadataValid( $image ): bool|int {
@@ -198,7 +199,7 @@ class ExternalVideoHandler extends MediaHandler {
 	 * @throws Exception
 	 */
 	private function getProviderFromMime( string $mimeType, string $videoId ): ExternalVideoProvider {
-		return match( $mimeType ) {
+		return match ( $mimeType ) {
 			'video/youtube' => new YouTubeProvider( $videoId ),
 			default => throw new Exception( "Unsupported video provider for MIME type: $mimeType" ),
 		};

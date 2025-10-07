@@ -33,7 +33,7 @@ class YouTubeProvider extends ExternalVideoProvider {
 	 * Get the ID corresponding to this video
 	 * @return string
 	 */
-	function getId(): string {
+	public function getId(): string {
 		return $this->id;
 	}
 
@@ -42,7 +42,7 @@ class YouTubeProvider extends ExternalVideoProvider {
 	 * and display on the file page
 	 * @return string
 	 */
-	function getThumbnailUrl(): string {
+	public function getThumbnailUrl(): string {
 		return $this->thumbnailUrl;
 	}
 
@@ -109,6 +109,5 @@ class YouTubeProvider extends ExternalVideoProvider {
 	public function getMinimumHeightForEmbed(): int {
 		return 360;
 	}
-
 
 }

@@ -41,7 +41,7 @@ class ExternalVideoFactory {
 	 * Take an incoming URL and return the appropriate handler for this provider so that we can
 	 * upload the image from it
 	 * At the moment it only handles YouTube.
-	 * @TODO: support other providers? Twitch et al?
+	 * @todo support other providers? Twitch et al?
 	 * @param string $url
 	 *
 	 * @return ExternalVideoProvider|null

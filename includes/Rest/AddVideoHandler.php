@@ -17,7 +17,8 @@ class AddVideoHandler extends SimpleHandler {
 	public function __construct(
 		private readonly ExternalVideoFactory $externalVideoFactory,
 		private readonly ExternalVideoStore $externalVideoStore,
-	) {}
+	) {
+	}
 
 	/**
 	 * Upload our video and return the URL of the new file page to the caller
@@ -25,7 +26,6 @@ class AddVideoHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run(): Response {
-
 		if ( !$this->getAuthority()->isDefinitelyAllowed( 'upload' ) ) {
 			return $this->getResponseFactory()->createHttpError(
 				403,
@@ -57,7 +57,7 @@ class AddVideoHandler extends SimpleHandler {
 		if ( !$res->isOK() ) {
 			return $this->getResponseFactory()->createHttpError(
 				500,
-				['error' => wfMessage( 'externalvideo-error' )->text() ]
+				[ 'error' => wfMessage( 'externalvideo-error' )->text() ]
 			);
 		}
 

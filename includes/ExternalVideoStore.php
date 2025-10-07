@@ -13,10 +13,10 @@ use Wikimedia\FileBackend\FSFile\FSFile;
 
 class ExternalVideoStore {
 
-
 	public function __construct(
 		private readonly RepoGroup $repoGroup,
-	) {}
+	) {
+	}
 
 	/**
 	 * Create a video from a provider and upload it to MediaWiki

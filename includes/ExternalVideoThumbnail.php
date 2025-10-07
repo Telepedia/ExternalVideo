@@ -9,7 +9,7 @@ class ExternalVideoThumbnail extends ThumbnailImage {
 
 	/**
 	 * Wrap the thumbnail so we can add our play button
-	 * @param $options
+	 * @param array $options
 	 * @return string
 	 */
 	public function toHtml( $options = [] ): string {
@@ -32,9 +32,10 @@ class ExternalVideoThumbnail extends ThumbnailImage {
 	 * @return string
 	 */
 	private function getPlay(): string {
-		$width =  $this->width * 0.3;
+		$width = $this->width * 0.3;
 		$height = $this->height * 0.3;
-		$play = sprintf('<svg width="%d" height="%d" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round">
+		// phpcs:disable Generic.Files.LineLength.TooLong
+		$play = sprintf( '<svg width="%d" height="%d" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round">
 					<path style="fill:none" d="M0 0h100v100H0z"/>
 					<clipPath id="a">
 						<path d="M0 0h100v100H0z"/>
@@ -47,6 +48,7 @@ class ExternalVideoThumbnail extends ThumbnailImage {
 				$width,
 				$height
 			);
+		// phpcs:enable Generic.Files.LineLength.TooLong
 
 		$play = Html::rawElement(
 			'span',

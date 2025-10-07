@@ -7,7 +7,8 @@ use MediaWiki\Hook\SkinTemplateNavigation__UniversalHook;
 
 class SpecialHandler implements
 	SkinTemplateNavigation__UniversalHook,
-	BeforePageDisplayHook {
+	BeforePageDisplayHook
+{
 
 	/**
 	 * @inheritDoc
