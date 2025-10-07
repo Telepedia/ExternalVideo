@@ -4,7 +4,7 @@
 			"Telepedia Ltd."
 		]
 	},
-  "externalvideo-desc": "Embed videos from external providers natively into MediaWiki"
+  "externalvideo-desc": "Embed videos from external providers natively into MediaWiki",
   "externalvideo-add": "Add Video",
   "externalvideo-upload-permissions":"You do not have the necessary permissions to add videos.",
   "externalvideo-added": "Successfully added video",
